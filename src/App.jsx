@@ -1,25 +1,48 @@
 import { TwitterFollowCard } from './TwitterFollowCard'
 import './App.css'
 
+const users = [
+  {
+    userName: 'midudev',
+    name: 'Miguel Ángel Durán',
+    isFollowing: true,
+  },
+  {
+    userName: 'DarianaSmile',
+    name: 'Darianaaa',
+    isFollowing: true,
+  },
+  {
+    userName: 'maikconk',
+    name: 'Miguel Baños Folcrá',
+    isFollowing: true,
+  },
+  {
+    userName: 'HasbullaHive',
+    name: 'Hasbulla',
+    isFollowing: false,
+  }
+]
+
 function App() {
   return (
-    <div className='App'>
+    <section className='App'>
+      {/* Lo que envuelve dentro de "TwitterFollowCard" es el "children" 
+      y puedes poner tanto una cadena como etiquetas ej: <span>Juan perez</span>  */}
+      {
+        users.map(({ userName, name, isFollowing }) => (
+          <TwitterFollowCard
+            key={userName}
+            userName={userName}
+            initialIsFollowing={isFollowing}>
 
-      {/* si pasas una prop sin =, se entiende que es true por defecto */}
-      <TwitterFollowCard userName="midudev">
-        Miguel Ángel Durán
-      </TwitterFollowCard>
-      <TwitterFollowCard userName="DarianaSmile">
-        Darianaaa
-      </TwitterFollowCard>
-      <TwitterFollowCard userName="maikconk" >
-        Miguel Baños Folcrá
-      </TwitterFollowCard>
-      <TwitterFollowCard userName="HasbullaHive">
-        Hasbulla
-      </TwitterFollowCard>
-
-    </div>
+            {/* El "name" se pone aqui porque es el "children" (que se pasa como prop) sino, 
+          se pondría directamente como prop el "name" */}
+            {name}
+          </TwitterFollowCard>)
+        )
+      }
+    </section>
   )
 }
 
